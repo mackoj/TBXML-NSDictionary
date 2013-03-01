@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TBXML+NSDictionary.h"
 
 @interface ViewController ()
 
@@ -17,7 +18,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"books" ofType:@"xml"]];
+    NSError *error = nil;
+    NSDictionary *dict = [TBXML dictionaryWithXMLData:xmlData error:&error];
+    NSLog(@"%@", error);
+    NSLog(@"---");
+    NSLog(@"%@", dict);
 }
 
 - (void)didReceiveMemoryWarning
